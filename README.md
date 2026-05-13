@@ -1,4 +1,4 @@
-#SaviyntBot 🛡️
+# SaviyntBot 🛡️
 SaviyntBot is an enterprise-grade Identity & Access Management (IAM) assistant designed for the Saviynt Identity Cloud. It leverages AI to simplify complex data exploration through natural language.
 
 🚀 Overview
