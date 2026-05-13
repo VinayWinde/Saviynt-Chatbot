@@ -28,7 +28,7 @@ Security: Dotenv for environment variable protection
 Clone the repository:
 
 Bash
-git clone https://github.com/YOUR_USERNAME/saviynt-sql-bot.git
+git clone(https://github.com/VinayWinde/Saviynt-Chatbot/blob/main/README.md)
 cd saviynt-sql-bot
 Install dependencies:
 
