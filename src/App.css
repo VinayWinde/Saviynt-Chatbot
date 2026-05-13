@@ -1,0 +1,733 @@
+/* Target the browser levels */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden; /* Stops the main window from scrolling */
+  background-color: #0b141d; /* Deep dark background */
+}
+
+
+
+
+:root {
+  --navy: #0f1e2e;
+  --blue: #1a3a5c;
+  --bg: #f3f6fa;
+  --card: #ffffff;
+  --border: #dbe3ef;
+  --text: #172033;
+  --muted: #667085;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  height: 56px;
+  background: var(--navy);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo,
+.bot-avatar {
+  width: 32px;
+  height: 32px;
+  background: var(--blue);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.brand p {
+  margin: 0;
+  font-size: 11px;
+  color: #7db0df;
+}
+
+nav button {
+  background: transparent;
+  border: 0;
+  color: #7db0df;
+  padding: 7px 13px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+nav button.active {
+  background: rgba(255, 255, 255, 0.14);
+  color: white;
+}
+
+.chat-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 18px;
+}
+
+.user-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 14px;
+}
+
+.user-msg {
+  background: var(--blue);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 16px 16px 4px 16px;
+  max-width: 75%;
+  line-height: 1.5;
+}
+
+.bot-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+  align-items: flex-start;
+}
+
+.bot-msg,
+.answer-box,
+.sql-box,
+.table-box,
+.history-card,
+.schema-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+.bot-msg {
+  padding: 12px 16px;
+  max-width: 85%;
+  line-height: 1.6;
+}
+
+.result-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.answer-box {
+  padding: 14px 16px;
+}
+
+.answer-box p {
+  margin: 10px 0 0;
+  line-height: 1.6;
+}
+
+.meta-row {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.meta-row code,
+.schema-card code {
+  background: #eef3f8;
+  border-radius: 5px;
+  padding: 3px 7px;
+  font-size: 11px;
+}
+
+.type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 20px;
+  padding: 4px 11px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.type-badge span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.complexity {
+  background: #eef6ff;
+  color: #1e40af;
+  border-radius: 20px;
+  padding: 4px 11px;
+  font-size: 11px;
+}
+
+.sql-box {
+  overflow: hidden;
+}
+
+.sql-header,
+.table-header {
+  padding: 11px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sql-header {
+  cursor: pointer;
+}
+
+.sql-header > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sql-label {
+  background: var(--blue);
+  color: white;
+  border-radius: 5px;
+  padding: 3px 8px;
+  font-size: 11px;
+}
+
+.sql-code {
+  margin: 0;
+  padding: 16px;
+  overflow-x: auto;
+  background: #0f1e2e;
+  color: #c9e3ff;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.copy-btn,
+.toggle-btn,
+.table-header button {
+  border: 1px solid var(--border);
+  background: #f8fafc;
+  color: var(--text);
+  border-radius: 7px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.table-header button {
+  background: var(--blue);
+  color: white;
+  border: 0;
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+th {
+  background: var(--blue);
+  color: white;
+  text-align: left;
+  padding: 9px 12px;
+}
+
+td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+.loading-small {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: var(--muted);
+}
+
+.suggestions {
+  margin-top: 10px;
+}
+
+.suggestions p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.suggestions div {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 9px;
+}
+
+.suggestions button {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 11px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.suggestions button span {
+  margin-right: 8px;
+}
+
+.input-area {
+  background: white;
+  border-top: 1px solid var(--border);
+  padding: 12px 18px;
+}
+
+.input-area > div {
+  display: flex;
+  gap: 9px;
+}
+
+textarea {
+  flex: 1;
+  min-height: 45px;
+  max-height: 120px;
+  resize: vertical;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  font-family: inherit;
+  outline: none;
+}
+
+textarea:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(26, 58, 92, 0.12);
+}
+
+.input-area button {
+  background: var(--blue);
+  color: white;
+  border: 0;
+  border-radius: 12px;
+  padding: 0 22px;
+  cursor: pointer;
+}
+
+.input-area button:disabled {
+  background: #d0d5dd;
+  cursor: not-allowed;
+}
+
+.input-area p {
+  margin: 6px 0 0;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.page {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.history-card,
+.schema-card {
+  padding: 15px;
+  margin-bottom: 12px;
+}
+
+.schema-card h3 {
+  margin: 0;
+  color: var(--blue);
+}
+
+.schema-card p {
+  margin: 5px 0 10px;
+  color: var(--muted);
+}
+
+.schema-card div {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.error {
+  background: #991b1b;
+  color: white;
+}
+
+.error-box {
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+  color: #9f1239;
+  padding: 12px 15px;
+  border-radius: 12px;
+}
+
+
+
+  --------------                                                  /* ADD ONS ADD ONS ADD ADD ADDD NEW NEW */
+/* Container for the brand to align items */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* The Futuristic Title */
+.brand h1 {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  
+  /* REMOVED: Metallic Gradient & Background Clip */
+  /* ADDED: Solid White or very light blue for high contrast on Navy */
+  color: #FFFFFF; 
+
+  /* REMOVED: filter: drop-shadow (The glow effect) */
+  
+  /* REMOVED: animation: titlePulse (The pulsing effect) */
+  
+  /* OPTIONAL: Add a very slight shadow just for readability */
+  text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+}
+
+/* Also update your subtitle to match the flat look */
+.brand p {
+  color: #A8D0E6;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin: 0;
+  text-transform: uppercase;
+  opacity: 1; /* Made fully opaque for clarity */
+}
+/* The Subtitle (Subtitle Cloud Text) */
+.brand p {
+  margin: 0;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #5A8EBA;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+/* Futuristic Logo Box */
+.logo {
+  width: 40px;
+  height: 40px;
+  background: rgba(26, 58, 92, 0.5);
+  border: 1px solid #5A8EBA;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  box-shadow: inset 0 0 10px rgba(90, 142, 186, 0.3), 0 0 15px rgba(90, 142, 186, 0.2);
+  transition: all 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05) rotate(5deg);
+  box-shadow: 0 0 20px rgba(90, 142, 186, 0.5);
+}
+
+/* The Pulsing Animation */
+@keyframes titlePulse {
+  0%, 100% { filter: drop-shadow(0 0 5px rgba(90, 142, 186, 0.4)); }
+  50% { filter: drop-shadow(0 0 15px rgba(90, 142, 186, 0.7)); }
+}
+
+/* The container for the input */
+.input-area textarea, 
+.input-area input {
+  width: 100%;
+  padding: 12px 16px;
+  
+  /* The Border: 2px wide, solid, and a dark navy/charcoal */
+  border: 2px solid #0a141d; 
+  
+  /* Background should be slightly lighter than the border to make it pop */
+  background-color: #162635; 
+  
+  color: #ffffff;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  resize: none;
+  
+  /* Subtle transition for when you click inside */
+  transition: all 0.3s ease;
+  
+  /* This adds a tiny dark shadow inside to make it look "recessed" */
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* When the user clicks into the box (Focus state) */
+.input-area textarea:focus, 
+.input-area input:focus {
+  /* Light up the border slightly so the user knows they are typing */
+  border-color: #5A8EBA; 
+  
+  /* Add a soft glow to keep the futuristic vibe */
+  box-shadow: 0 0 8px rgba(90, 142, 186, 0.3), 
+              inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.send-button {
+  background-color: #0a141d; /* Deep dark base */
+  color: #5A8EBA;           /* Contrast text/icon color */
+  border: 1px solid #1A3A5C; /* Subtle border */
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 12px;
+  
+  /* Inner shadow for depth */
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.send-button:hover {
+  background-color: #121f2b; /* Slightly lighter on hover */
+  color: #ffffff;           /* Text turns white */
+  border-color: #5A8EBA;    /* Border glows slightly */
+  box-shadow: 0 0 12px rgba(90, 142, 186, 0.2);
+  transform: translateY(-1px);
+}
+
+.send-button:active {
+  transform: translateY(1px);
+  background-color: #050a0f; /* Darkest state when clicked */
+}
+
+/* Optional: styling the icon inside the button */
+.send-button svg, .send-button span {
+  filter: drop-shadow(0 0 2px rgba(90, 142, 186, 0.5));
+}
+
+/* Container for the buttons */
+nav {
+  display: flex;
+  gap: 15px;
+  padding: 10px;
+}
+
+/* The Core Button Style */
+nav button {
+  position: relative;
+  background: rgba(10, 20, 30, 0.6);
+  color: #5A8EBA;
+  border: 1px solid rgba(90, 142, 186, 0.3);
+  padding: 10px 22px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%); /* Angular "Sci-Fi" Shape */
+}
+
+/* The Hover Effect: Expansion and Color Shift */
+nav button:hover {
+  color: #fff;
+  background: rgba(90, 142, 186, 0.2);
+  border-color: #5A8EBA;
+  letter-spacing: 4px;
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(90, 142, 186, 0.5);
+}
+
+/* The Active State: Cyan "Power" Glow */
+nav button.active {
+  background: #1A3A5C;
+  color: #00d4ff;
+  border-color: #00d4ff;
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.4), inset 0 0 10px rgba(0, 212, 255, 0.2);
+  clip-path: polygon(0 0, 90% 0, 100% 100%, 10% 100%); /* Slight shape shift when active */
+}
+
+/* Hover Animation: The "Scanning" Line */
+nav button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    rgba(90, 142, 186, 0.4), 
+    transparent
+  );
+  transition: none;
+}
+
+nav button:hover::before {
+  left: 100%;
+  transition: 0.6s;
+}
+
+/* Tiny Corner Accents (Bottom Right) */
+nav button::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  right: 12px;
+  width: 4px;
+  height: 4px;
+  background: rgba(90, 142, 186, 0.5);
+  box-shadow: -6px 0 0 rgba(90, 142, 186, 0.2);
+}
+
+nav button.active::after {
+  background: #00d4ff;
+  box-shadow: -6px 0 0 #00d4ff;
+}
+
+/* Styling for History or Schema items */
+.list-item {
+  background: rgba(26, 58, 92, 0.1);
+  border-left: 3px solid #1A3A5C;
+  margin-bottom: 8px;
+  padding: 12px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.list-item:hover {
+  background: rgba(90, 142, 186, 0.15);
+  border-left-color: #5A8EBA;
+  padding-left: 18px; /* Smooth slide-out effect */
+}
+
+/* Global Light Mode Reset */
+html, body, #root {
+  background-color: #f8fafc !important; /* Soft white/gray background */
+  color: #1e293b; /* Dark slate text for readability */
+}
+
+.app {
+  background-color: #f8fafc;
+}
+
+/* The Main Content Area (inside chat/tabs) */
+main, .main-content {
+  background: #ffffff; /* Pure white for the main panel */
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.02); /* Very subtle depth */
+}
+/* .header {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+} */
+
+.brand h1 {
+  color: #FFFFFF;
+  font-size: 1.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin: 0;
+  
+  /* Adds a glow that makes it look like a backlit display */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 
+               0 0 20px rgba(90, 142, 186, 0.5);
+}
+
+.brand p {
+  color: #A8D0E6; /* A very soft, pale sky blue for the subtitle */
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+
+
+nav button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(168, 208, 230, 0.3);
+  color: #A8D0E6;
+  padding: 8px 18px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%); /* Tactical slant */
+}
+
+nav button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+nav button.active {
+  background: #5A8EBA; /* Bright blue for the active state */
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+  box-shadow: 0 0 20px rgba(90, 142, 186, 0.5);
+  clip-path: polygon(0 0, 85% 0, 100% 100%, 0% 100%); /* Flip slant when active */
+}
+
+
+
+
